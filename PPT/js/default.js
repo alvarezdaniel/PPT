@@ -10,7 +10,7 @@
     var nav = WinJS.Navigation;
 
     //crear variables para botones de navegacion.
-    var homeButton, page2Button;
+    var homeButton, startGameButton;
 
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
@@ -34,8 +34,8 @@
                 homeButton = appbar.getCommandById("homeButton");
                 homeButton.addEventListener("click", goToHome, false);
 
-                page2Button = appbar.getCommandById("page2Button");
-                page2Button.addEventListener("click", goToPage2, false);
+                startGameButton = appbar.getCommandById("startGameButton");
+                startGameButton.addEventListener("click", startGame, false);
 
                 if (nav.location) {
                     nav.history.current.initialPlaceholder = true;
@@ -51,8 +51,8 @@
         WinJS.Navigation.navigate("/pages/home/home.html");
     }
 
-    function goToPage2(eventInfo) {
-        WinJS.Navigation.navigate("/pages/page2/page2.html");
+    function startGame(eventInfo) {
+        WinJS.Navigation.navigate("/pages/game/game.html");
     }
 
     app.oncheckpoint = function (args) {
