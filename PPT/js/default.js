@@ -9,6 +9,9 @@
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
 
+    //crear variables para botones de navegacion.
+    var homeButton, page2Button;
+
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
@@ -23,6 +26,17 @@
                 nav.history = app.sessionState.history;
             }
             args.setPromise(WinJS.UI.processAll().then(function () {
+
+                //devolver appbar
+                var appbar = document.getElementById("appbar").winControl;
+
+                //adjuntar event handler
+                homeButton = appbar.getCommandById("homeButton");
+                homeButton.addEventListener("click", goToHome, false);
+
+                page2Button = appbar.getCommandById("page2Button");
+                page2Button.addEventListener("click", goToPage2, false);
+
                 if (nav.location) {
                     nav.history.current.initialPlaceholder = true;
                     return nav.navigate(nav.location, nav.state);
@@ -32,6 +46,14 @@
             }));
         }
     });
+
+    function goToHome(eventInfo) {
+        WinJS.Navigation.navigate("/pages/home/home.html");
+    }
+
+    function goToPage2(eventInfo) {
+        WinJS.Navigation.navigate("/pages/page2/page2.html");
+    }
 
     app.oncheckpoint = function (args) {
         // TODO: This application is about to be suspended. Save any state
