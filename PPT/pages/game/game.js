@@ -8,6 +8,8 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             // TODO: Initialize the page here.
+            document.getElementById("title").innerText =
+                "Piedra, Papel o Tijera: " + WinJS.Application.sessionState.jugador + " vs Windows8";
         },
 
         unload: function () {

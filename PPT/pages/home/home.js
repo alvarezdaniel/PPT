@@ -22,11 +22,29 @@
             //devolver el boton y registrar el evento.
             var holaButton = document.getElementById("nombreButton");
             holaButton.addEventListener("click", this.ButtonClickHandler, false);
+
+            document.getElementById("jugarButton").addEventListener("click", this.ButtonJugarClickHandler, false);
+
         },
         ButtonClickHandler: function (eventInfo) {
             var nombreUsuario = document.getElementById("nombreInput").value;
-            var bienvenida = "Hola, " + nombreUsuario + "!";
-            document.getElementById("outputDiv").innerText = bienvenida;
+
+            if (nombreInput.value != "") {
+                var bienvenida = "Hola, " + nombreUsuario + "!, bienvenido al juego de Piedra, Papel o Tijera";
+                document.getElementById("outputDiv").innerText = bienvenida;
+            }
+            else {
+                document.getElementById("outputDiv").innerText = "";
+            }
+        },
+
+        ButtonJugarClickHandler: function (eventInfo) {
+            //document.getElementById("outputDiv").innerText = "Jugar";
+            if (document.getElementById("nombreInput").value != "") {
+                WinJS.Application.sessionState.jugador = document.getElementById("nombreInput").value;
+                eventInfo.preventDefault();
+                WinJS.Navigation.navigate("/pages/game/game.html");
+            }
         },
 
         RatingChanged: function (eventInfo) {
