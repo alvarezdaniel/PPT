@@ -17,35 +17,38 @@
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
             <h1 class="titlearea win-type-ellipsis">
-                <span id="title" class="pagetitle">Piedra Papel o Tijera</span>
+                <span id="title" class="pagetitle">Rock, Paper, Scissors</span>
             </h1>
         </header>
         <section aria-label="Main content" role="main">
-            <h2 id="jugadores"></h2>
+            <h2 id="players"></h2>
             <br />
-            <div id="juego">
-                <div id="mijuego">
-                    <button id="buttonpiedra1">Piedra</button>
-                    <button id="buttonpapel1">Papel</button>
-                    <button id="buttontijera1">Tijera</button>
-                    <div id="mijuegooutput"></div>
+            <div id="game" class="div1">
+                <div id="mygame" class="div1">
+                    <div id="myGameOutput" class="div1">My Choice:</div>
+                    <br />
+                    <button id="buttonrock1" class="div1">Rock</button>
+                    <button id="buttonpaper1" class="div1">Paper</button>
+                    <button id="buttonscissors1" class="div1">Scissors</button>
+                </div>
+                <div id="winGame" class="div1">
+                    <div id="winGameOutput" class="div1">Windows8 Choice:</div>
+                    <br />
+                    <button id="buttonrock2" class="div1" aria-disabled="true">Rock</button>
+                    <button id="buttonpaper2" class="div1" aria-disabled="true">Paper</button>
+                    <button id="buttonscissors2" class="div1" aria-disabled="true">Scissors</button>
+                </div>
+                <div id="result" class="div1">Game started</div>
+                <br />
+                <div id="stats" class="div1">
+                    Player:
+                    <div id="playerCount"></div>
+                    <br />
+                    Windows8:
+                    <div id="win8Count"></div>
                 </div>
             </div>
             <br />
-            <div id="juegowin">
-                    <button id="buttonpiedra2">Piedra</button>
-                    <button id="buttonpapel2">Papel</button>
-                    <button id="buttontijera2">Tijera</button>
-                    <div id="juegowinoutput"></div>
-            </div>
-            <br />
-            <div id="resumen"></div>
-            <br />
-            <div id="estadisticas>">
-                Jugador: <div id="cantJugador"></div>
-                <br />
-                Windows8: <div id="cantWin8"></div>
-            </div>
         </section>
     </div>
 </body>

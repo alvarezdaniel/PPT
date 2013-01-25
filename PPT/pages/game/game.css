@@ -1,4 +1,19 @@
-﻿.game section[role=main] {
+﻿.red { 
+    background-color: red; 
+    margin-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.div1{
+    margin-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.game section[role=main] {
     margin-left: 120px;
     margin-right: 120px;
 }

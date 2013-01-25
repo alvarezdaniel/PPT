@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="59191dalvarez.PPT" Version="1.0.0.2" Publisher="CN=979E6971-D3F7-4052-B648-4999CC84F767" />
+  <Identity Name="59191dalvarez.PPT" Version="1.0.0.3" Publisher="CN=979E6971-D3F7-4052-B648-4999CC84F767" />
   <Properties>
     <DisplayName>PPT</DisplayName>
     <PublisherDisplayName>dalvarez</PublisherDisplayName>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <VisualElements DisplayName="PPT" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="PPT" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="PPT" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="PPT: Rock, Paper, Scissors" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="images\splashscreen.png" />
         <InitialRotationPreference>
@@ -24,7 +24,4 @@
       </VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>

@@ -3,10 +3,6 @@
     width: 100%;
 }
 
-/*#appbar {
-    background-color:#0094ff;
-}*/
-
 .fragment {
     /* Define a grid with rows for a banner and a body */
     -ms-grid-columns: 1fr;

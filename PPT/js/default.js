@@ -34,9 +34,6 @@
                 homeButton = appbar.getCommandById("homeButton");
                 homeButton.addEventListener("click", goToHome, false);
 
-                //startGameButton = appbar.getCommandById("startGameButton");
-                //startGameButton.addEventListener("click", startGame, false);
-
                 if (nav.location) {
                     nav.history.current.initialPlaceholder = true;
                     return nav.navigate(nav.location, nav.state);

@@ -8,18 +8,18 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+
             // TODO: Initialize the page here.
-            document.getElementById("jugadores").innerText =
-                WinJS.Application.sessionState.jugador + " vs Windows8";
+            document.getElementById("players").innerText =
+                WinJS.Application.sessionState.player + " vs Windows8: play your turn using the buttons from the first row";
 
-            document.getElementById("buttonpiedra1").addEventListener("click", this.ButtonPiedraClickHandler, false);
-            document.getElementById("buttonpapel1").addEventListener("click", this.ButtonPapelClickHandler, false);
-            document.getElementById("buttontijera1").addEventListener("click", this.ButtonTijeraClickHandler, false);
+            document.getElementById("buttonrock1").addEventListener("click", this.ButtonRockClickHandler, false);
+            document.getElementById("buttonpaper1").addEventListener("click", this.ButtonPaperClickHandler, false);
+            document.getElementById("buttonscissors1").addEventListener("click", this.ButtonScissorsClickHandler, false);
 
-            WinJS.Application.sessionState.cantjugadas = 0;
-            WinJS.Application.sessionState.cantJugador = 0;
-            WinJS.Application.sessionState.cantWin8 = 0;
-          
+            WinJS.Application.sessionState.playCount = 0;
+            WinJS.Application.sessionState.playerCount = 0;
+            WinJS.Application.sessionState.win8Count = 0;
         },
 
         unload: function () {
@@ -31,98 +31,122 @@
             // TODO: Respond to changes in viewState.
         },
 
-        ButtonPiedraClickHandler: function (eventInfo) {
+        ButtonRockClickHandler: function (eventInfo) {
             eventInfo.preventDefault();
-            document.getElementById("mijuegooutput").innerText = "Piedra";
+            document.getElementById("myGameOutput").innerText = "My Choice: Rock";
+            document.getElementById("buttonrock1").className = "red";
+            document.getElementById("buttonpaper1").className = "div1";
+            document.getElementById("buttonscissors1").className = "div1";
 
-            var juegowin = Math.floor((Math.random() * 3) + 1);
+            document.getElementById("buttonrock2").className = "div1";
+            document.getElementById("buttonpaper2").className = "div1";
+            document.getElementById("buttonscissors2").className = "div1";
 
-            var res = "";
-            switch (juegowin)
+            var win8Game = Math.floor((Math.random() * 3) + 1);
+            switch (win8Game)
             {
                 case 1:
-                    document.getElementById("juegowinoutput").innerText = "Piedra";
-                    document.getElementById("resumen").innerText = "Piedra-Piedra=empate";
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Rock";
+                    document.getElementById("buttonrock2").className = "red";
+                    document.getElementById("result").innerText = "Rock - Rock = tie";
                     break;
 
                 case 2:
-                    document.getElementById("juegowinoutput").innerText = "Papel";
-                    document.getElementById("resumen").innerText = "Papel envuelve Piedra=gana win";
-                    var i = WinJS.Application.sessionState.cantWin8 + 1;
-                    WinJS.Application.sessionState.cantWin8 = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Paper";
+                    document.getElementById("buttonpaper2").className = "red";
+                    document.getElementById("result").innerText = "Paper covers Rock = windows8 wins";
+                    var i = WinJS.Application.sessionState.win8Count + 1;
+                    WinJS.Application.sessionState.win8Count = i;
                     break;
 
                 case 3:
-                    document.getElementById("juegowinoutput").innerText = "Tijera";
-                    document.getElementById("resumen").innerText = "Tijera machucada con Piedra=gana jugador";
-                    var i = WinJS.Application.sessionState.cantJugador + 1;
-                    WinJS.Application.sessionState.cantJugador = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Scissors";
+                    document.getElementById("buttonscissors2").className = "red";
+                    document.getElementById("result").innerText = "Rock breaks Scissors = player wins";
+                    var i = WinJS.Application.sessionState.playerCount + 1;
+                    WinJS.Application.sessionState.playerCount = i;
                     break;
             }
-            document.getElementById("cantJugador").innerText = WinJS.Application.sessionState.cantJugador;
-            document.getElementById("cantWin8").innerText = WinJS.Application.sessionState.cantWin8;
+            document.getElementById("playerCount").innerText = WinJS.Application.sessionState.playerCount;
+            document.getElementById("win8Count").innerText = WinJS.Application.sessionState.win8Count;
         },
 
-        ButtonPapelClickHandler: function (eventInfo) {
+        ButtonPaperClickHandler: function (eventInfo) {
             eventInfo.preventDefault();
-            document.getElementById("mijuegooutput").innerText = "Papel";
+            document.getElementById("myGameOutput").innerText = "My Choice: Paper";
+            document.getElementById("buttonrock1").className = "div1";
+            document.getElementById("buttonpaper1").className = "red";
+            document.getElementById("buttonscissors1").className = "div1";
 
-            var juegowin = Math.floor((Math.random() * 3) + 1);
+            document.getElementById("buttonrock2").className = "div1";
+            document.getElementById("buttonpaper2").className = "div1";
+            document.getElementById("buttonscissors2").className = "div1";
 
-            var res = "";
-            switch (juegowin) {
+            var win8Game = Math.floor((Math.random() * 3) + 1);
+            switch (win8Game) {
                 case 1:
-                    document.getElementById("juegowinoutput").innerText = "Piedra";
-                    document.getElementById("resumen").innerText = "Papel envuelve Piedra=gana jugador";
-                    var i = WinJS.Application.sessionState.cantJugador + 1;
-                    WinJS.Application.sessionState.cantJugador = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Rock";
+                    document.getElementById("buttonrock2").className = "red";
+                    document.getElementById("result").innerText = "Paper covers Rock = player wins";
+                    var i = WinJS.Application.sessionState.playerCount + 1;
+                    WinJS.Application.sessionState.playerCount = i;
                     break;
 
                 case 2:
-                    document.getElementById("juegowinoutput").innerText = "Papel";
-                    document.getElementById("resumen").innerText = "Papel-Papel=empate";
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Paper";
+                    document.getElementById("buttonpaper2").className = "red";
+                    document.getElementById("result").innerText = "Paper - Paper = tie";
                     break;
 
                 case 3:
-                    document.getElementById("juegowinoutput").innerText = "Tijera";
-                    document.getElementById("resumen").innerText = "Tijera corta papel=gana win";
-                    var i = WinJS.Application.sessionState.cantWin8 + 1;
-                    WinJS.Application.sessionState.cantWin8 = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Scissors";
+                    document.getElementById("buttonscissors2").className = "red";
+                    document.getElementById("result").innerText = "Scissors cut Paper = windows8 wins";
+                    var i = WinJS.Application.sessionState.win8Count + 1;
+                    WinJS.Application.sessionState.win8Count = i;
                     break;
             }
-            document.getElementById("cantJugador").innerText = WinJS.Application.sessionState.cantJugador;
-            document.getElementById("cantWin8").innerText = WinJS.Application.sessionState.cantWin8;
+            document.getElementById("playerCount").innerText = WinJS.Application.sessionState.playerCount;
+            document.getElementById("win8Count").innerText = WinJS.Application.sessionState.win8Count;
         },
 
-        ButtonTijeraClickHandler: function (eventInfo) {
+        ButtonScissorsClickHandler: function (eventInfo) {
             eventInfo.preventDefault();
-            document.getElementById("mijuegooutput").innerText = "Tijera";
+            document.getElementById("myGameOutput").innerText = "My Choice: Scissors";
+            document.getElementById("buttonrock1").className = "div1";
+            document.getElementById("buttonpaper1").className = "div1";
+            document.getElementById("buttonscissors1").className = "red";
 
-            var juegowin = Math.floor((Math.random() * 3) + 1);
+            document.getElementById("buttonrock2").className = "div1";
+            document.getElementById("buttonpaper2").className = "div1";
+            document.getElementById("buttonscissors2").className = "div1";
 
-            var res = "";
-            switch (juegowin) {
+            var win8Game = Math.floor((Math.random() * 3) + 1);
+            switch (win8Game) {
                 case 1:
-                    document.getElementById("juegowinoutput").innerText = "Piedra";
-                    document.getElementById("resumen").innerText = "Piedra machuca Tijera=gana win";
-                    var i = WinJS.Application.sessionState.cantWin8 + 1;
-                    WinJS.Application.sessionState.cantWin8 = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Rock";
+                    document.getElementById("buttonrock2").className = "red";
+                    document.getElementById("result").innerText = "Rock breaks Scissors = windows8 wins";
+                    var i = WinJS.Application.sessionState.win8Count + 1;
+                    WinJS.Application.sessionState.win8Count = i;
                     break;
 
                 case 2:
-                    document.getElementById("juegowinoutput").innerText = "Papel";
-                    document.getElementById("resumen").innerText = "Tijera corta Papel=gana jugador";
-                    var i = WinJS.Application.sessionState.cantJugador + 1;
-                    WinJS.Application.sessionState.cantJugador = i;
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Paper";
+                    document.getElementById("buttonpaper2").className = "red";
+                    document.getElementById("result").innerText = "Scissors cut Paper = player wins";
+                    var i = WinJS.Application.sessionState.playerCount + 1;
+                    WinJS.Application.sessionState.playerCount = i;
                     break;
 
                 case 3:
-                    document.getElementById("juegowinoutput").innerText = "Tijera";
-                    document.getElementById("resumen").innerText = "Tijera-Tijera=empate";
+                    document.getElementById("winGameOutput").innerText = "Win8 Choice: Scissors";
+                    document.getElementById("buttonscissors2").className = "red";
+                    document.getElementById("result").innerText = "Scissors - Scissors = tie";
                     break;
             }
-            document.getElementById("cantJugador").innerText = WinJS.Application.sessionState.cantJugador;
-            document.getElementById("cantWin8").innerText = WinJS.Application.sessionState.cantWin8;
+            document.getElementById("playerCount").innerText = WinJS.Application.sessionState.playerCount;
+            document.getElementById("win8Count").innerText = WinJS.Application.sessionState.win8Count;
         }
     });
 })();
