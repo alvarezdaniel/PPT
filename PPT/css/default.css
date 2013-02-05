@@ -1,22 +1,6 @@
 ﻿#contenthost {
     height: 100%;
     width: 100%;
-    /*background-color: #0A2562;*/
-}
-
-#content {
-    width: 100%;
-    height: 100%;
-}
-
-#articlelist {
-    width: 100%;
-    height: 100%;
-}
-
-#articlelist .win-item {
-    width: 150px;
-    height: 150px;
 }
 
 .fragment {
