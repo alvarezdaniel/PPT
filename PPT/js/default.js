@@ -8,6 +8,7 @@
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
+    var articlesList;
 
     //crear variables para botones de navegacion.
     var homeButton, startGameButton;
@@ -25,24 +26,34 @@
             if (app.sessionState.history) {
                 nav.history = app.sessionState.history;
             }
-            args.setPromise(WinJS.UI.processAll().then(function () {
 
-                //devolver appbar
-                var appbar = document.getElementById("appbar").winControl;
+            articlesList = new WinJS.Binding.List();
+            var publicMembers = { ItemList: articlesList };
+            WinJS.Namespace.define("C9Data", publicMembers);
 
-                //adjuntar event handler
-                homeButton = appbar.getCommandById("homeButton");
-                homeButton.addEventListener("click", goToHome, false);
+            downloadC9BlogFeed();
 
-                if (nav.location) {
-                    nav.history.current.initialPlaceholder = true;
-                    return nav.navigate(nav.location, nav.state);
-                } else {
-                    return nav.navigate(Application.navigator.home);
-                }
-            }));
+            args.setPromise(WinJS.UI.processAll().then(x));
         }
     });
+
+    function x() {
+
+        //devolver appbar
+        var appbar = document.getElementById("appbar").winControl;
+
+        //adjuntar event handler
+        homeButton = appbar.getCommandById("homeButton");
+        homeButton.addEventListener("click", goToHome, false);
+
+        if (nav.location) {
+            nav.history.current.initialPlaceholder = true;
+            return nav.navigate(nav.location, nav.state);
+        }
+        else {
+            return nav.navigate(Application.navigator.home);
+        }
+    }
 
     function goToHome(eventInfo) {
         WinJS.Navigation.navigate("/pages/home/home.html");
@@ -62,3 +73,20 @@
 
     app.start();
 })();
+
+function downloadC9BlogFeed() {
+    WinJS.xhr({ url: "http://www.pwop.com/feed.aspx?show=dotnetrocks&filetype=master&tags=HTML+5" }).then(function (rss) {
+        var items = rss.responseXML.querySelectorAll("item");
+
+        for (var n = 0; n < items.length; n++) {
+            var article = {};
+            article.title = items[n].querySelector("title").textContent;
+            var thumbs = items[n].querySelectorAll("thumbnail");
+            if (thumbs.length > 1) {
+                article.thumbnail = thumbs[1].attributes.getNamedItem("url").textContent;
+                article.content = items[n].textContent;
+                articlesList.push(article);
+            }
+        }
+    });
+}

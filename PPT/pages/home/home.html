@@ -12,6 +12,10 @@
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/home/home.css" rel="stylesheet" />
     <script src="/pages/home/home.js"></script>
+
+    <!-- Your data file. -->
+    <script src="/js/data.js"></script>
+
 </head>
 <body>
     <!-- The content that will be loaded and displayed. -->
@@ -27,9 +31,22 @@
             <input id="nameInput" type="text" />
             <button id="nameButton">OK</button>
             <div id="outputDiv"></div>
-            
-            <p>
+
             <button id="playButton" aria-disabled="true">Start game</button>
+        </section>
+
+        <!--        
+        <section aria-label="Rss content" role="article">
+            <div id="basicListView"
+                data-win-control="WinJS.UI.ListView"
+                data-win-options="{ itemDataSource : Data.ItemList.dataSource }">
+            </div>
+        </section>
+        -->
+        <section id="content">
+            <div id="articleList" data-win-control="WinJS.UI.ListView" 
+                data-win-options="{ itemDataSource: C9Data.ItemList.dataSource }">
+            </div> 
         </section>
     </div>
 </body>
