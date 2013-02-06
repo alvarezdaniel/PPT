@@ -22,48 +22,55 @@
             </h1>
         </div>
 
-        <!-- Select Player -->
-        <div id="playerInfoDiv">
-            <p>What is your name?</p>
-            <input id="nameInput" type="text" />
-            <button id="nameButton">Select Player</button>
-            <div id="outputDiv"></div>
-
-            <br />
-            <button id="playButton">Start game</button>
+        <div id="selectPlayer">
+            <div id="labelPlayer">
+                <p>What is your name?</p>
+            </div>
+            <div id="textPlayer">
+                <input id="nameInput" type="text" />
+            </div>
+            <div id="buttonPlayer">
+                <button id="nameButton">Select Player</button>
+            </div>
+            <div id="output">
+                <div id="outputDiv"></div>
+            </div>
+            <div id="buttonPlay">
+                <button id="playButton">Start game</button>
+            </div>
         </div>
 
-        <div id="gameDiv">
-            <section aria-label="Main content" role="main">
-                <h2 id="players"></h2>
-                <br />
-                <div id="game" class="div1">
-                    <div id="mygame" class="div1">
-                        <div id="myGameOutput" class="div1">My Choice:</div>
-                        <br />
-                        <button id="buttonrock1" class="div1">Rock</button>
-                        <button id="buttonpaper1" class="div1">Paper</button>
-                        <button id="buttonscissors1" class="div1">Scissors</button>
-                    </div>
-                    <div id="winGame" class="div1">
-                        <div id="winGameOutput" class="div1">Windows8 Choice:</div>
-                        <br />
-                        <button id="buttonrock2" class="div1" aria-disabled="true">Rock</button>
-                        <button id="buttonpaper2" class="div1" aria-disabled="true">Paper</button>
-                        <button id="buttonscissors2" class="div1" aria-disabled="true">Scissors</button>
-                    </div>
-                    <div id="result" class="div1">Game started</div>
+        <div id="game">
+
+            <h2 id="players"></h2>
+            <br />
+            <div id="game_" class="div1">
+                <div id="mygame" class="div1">
+                    <div id="myGameOutput" class="div1">My Choice:</div>
                     <br />
-                    <div id="stats" class="div1">
-                        Player:
-                    <div id="playerCount"></div>
-                        <br />
-                        Windows8:
-                    <div id="win8Count"></div>
-                    </div>
+                    <button id="buttonrock1" class="div1">Rock</button>
+                    <button id="buttonpaper1" class="div1">Paper</button>
+                    <button id="buttonscissors1" class="div1">Scissors</button>
                 </div>
+                <div id="winGame" class="div1">
+                    <div id="winGameOutput" class="div1">Windows8 Choice:</div>
+                    <br />
+                    <button id="buttonrock2" class="div1" aria-disabled="true">Rock</button>
+                    <button id="buttonpaper2" class="div1" aria-disabled="true">Paper</button>
+                    <button id="buttonscissors2" class="div1" aria-disabled="true">Scissors</button>
+                </div>
+                <div id="result" class="div1">Game started</div>
                 <br />
-            </section>
+                <div id="stats" class="div1">
+                    Player:
+                    <div id="playerCount"></div>
+                    <br />
+                    Windows8:
+                    <div id="win8Count"></div>
+                </div>
+            </div>
+            <br />
+
         </div>
 
         <div id="C9ItemTemplate" data-win-control="WinJS.Binding.Template" style="display: none;">

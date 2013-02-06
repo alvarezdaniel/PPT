@@ -33,8 +33,8 @@
             document.getElementById("buttonpaper1").addEventListener("click", ButtonPaperClickHandler, false);
             document.getElementById("buttonscissors1").addEventListener("click", ButtonScissorsClickHandler, false);
 
-            document.getElementById("playerInfoDiv").style.display = "";
-            document.getElementById("gameDiv").style.display = "none";
+            document.getElementById("selectPlayer").style.display = "";
+            document.getElementById("game").style.display = "none";
             //document.getElementById("blogDiv").style.display = "";
 
             var articlelistElement = document.getElementById("articlelist");
@@ -201,8 +201,8 @@
             document.getElementById("players").innerText =
                 WinJS.Application.sessionState.player + " vs Windows8: play your turn using the buttons from the first row";
 
-            document.getElementById("playerInfoDiv").style.display = "none";
-            document.getElementById("gameDiv").style.display = "";
+            document.getElementById("selectPlayer").style.display = "none";
+            document.getElementById("game").style.display = "";
             //document.getElementById("blogDiv").style.display = "none";
         }
     }
