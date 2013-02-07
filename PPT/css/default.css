@@ -12,9 +12,8 @@
     height: 100%;
     display: -ms-grid;
     -ms-grid-columns: 1fr;
-    -ms-grid-rows: 80px 1fr 300px;
+    -ms-grid-rows: 80px 600px 20px 1fr;
     margin: 20px 20px 20px 20px;
-    /*background-color: azure;*/
 }
 
 #header
@@ -22,7 +21,6 @@
     width: 100%;
     height: 100%;
     -ms-grid-row: 1;
-    /*background-color: aliceblue;*/
     text-align: left;
 }
 
@@ -34,7 +32,6 @@
     -ms-grid-row: 2;
     -ms-grid-columns: 300px 120px 1fr;
     -ms-grid-rows: 50px 50px 50px;
-    background-color: blue;
     margin-left: 20px;
 }
 
@@ -79,10 +76,164 @@
     height: 100%;
     display: -ms-grid;
     -ms-grid-row: 2;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 80px 100px 100px 30px 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#playersLabel
+{
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#myGame
+{
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-row: 2;
+    -ms-grid-columns: 200px 1fr 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: 1fr;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#winGame
+{
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-row: 3;
+    -ms-grid-columns: 200px 1fr 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: 1fr;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#resultMessage
+{
+    -ms-grid-row: 4;
+    -ms-grid-row-align: center;
+    -ms-grid-column-align: center;
+}
+
+#myChoiceLabel
+{
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+}
+#winChoiceLabel
+{
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+}
+
+#buttonrock1
+{
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+}
+#buttonrock2
+{
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+}
+
+#buttonpaper1
+{
+    -ms-grid-column: 3;
+    -ms-grid-row: 1;
+}
+#buttonpaper2
+{
+    -ms-grid-column: 3;
+    -ms-grid-row: 1;
+}
+
+#buttonscissors1
+{
+    -ms-grid-column: 4;
+    -ms-grid-row: 1;
+}
+#buttonscissors2
+{
+    -ms-grid-column: 4;
+    -ms-grid-row: 1;
+}
+
+#myChoiceResult
+{
+    -ms-grid-column: 5;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+    margin-left: 20px;
+}
+#winChoiceResult
+{
+    -ms-grid-column: 5;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+    margin-left: 20px;
+}
+
+#myCount
+{
+    -ms-grid-column: 6;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+}
+#winCount
+{
+    -ms-grid-column: 6;
+    -ms-grid-row: 1;
+    -ms-grid-row-align: center;
+}
+
+#news
+{
+    -ms-grid-row: 3;
+}
+
+#articlelist
+{
+    /*width: 100%;
+    height: 100%;*/
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
+    /*width: calc(100%-200px);*/
+    height: 60px;
+    /*border: 2px solid gray;*/
+}
+
+    #articlelist .win-item
+    {
+        width: 400px;
+        height: 50px;
+    }
+
+/*.listItemTitle
+{
+    width: 400px;
+    height: 10px;
+}*/
+
+#articlecontent
+{
+    width: 100%;
+    height: 100%;
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
 }
 
 @media screen and (-ms-view-state: fullscreen-landscape)
 {
+/*
     #headerDiv
     {
         -ms-grid-row: 1;
@@ -120,12 +271,6 @@
         margin-left: 40px;
     }
 
-    #maintitle
-    {
-        -ms-grid-column: 2;
-        -ms-grid-row-align: center;
-    }
-
     #content
     {
         width: 100%;
@@ -139,29 +284,11 @@
         border: dashed;
     }
 
-    #articlelist
-    {
-        width: 100%;
-        height: 100%;
-        -ms-grid-row: 3;
-        border: dashed;
-    }
-
-        #articlelist .win-item
-        {
-            width: 200px;
-            height: 80px;
-        }
 
     .listItemTemplate
     {
         margin: 5px;
     }
-
-    /*.listItemImage img {
-        	width: 234px;
-        	height: 165px;
-        }*/
 
     .win-surface
     {
@@ -185,6 +312,7 @@
             overflow-x: scroll;
             overflow-y: hidden;
         }
+*/
 }
 
 @media screen and (-ms-view-state: filled)
@@ -200,7 +328,7 @@
 }
 
 
-.red
+/*.red
 {
     background-color: red;
     margin-left: 20px;
@@ -215,28 +343,12 @@
     margin-left: 20px;
     margin-bottom: 20px;
     margin-right: 20px;
-}
-
-.game section[role=main]
-{
-    margin-left: 120px;
-    margin-right: 120px;
-}
+}*/
 
 @media screen and (-ms-view-state: snapped)
 {
-    .game section[role=main]
-    {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait)
 {
-    .game section[role=main]
-    {
-        margin-left: 100px;
-        margin-right: 100px;
-    }
 }
