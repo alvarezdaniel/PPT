@@ -8,9 +8,12 @@
     var startGameButton;
     var articlesList;
 
-    WinJS.Application.sessionState.playCount = 0;
-    WinJS.Application.sessionState.myCount = 0;
-    WinJS.Application.sessionState.winCount = 0;
+    //WinJS.Application.sessionState.playCount = 0;
+    //WinJS.Application.sessionState.myCount = 0;
+    //WinJS.Application.sessionState.winCount = 0;
+    var playCount = 0;
+    var myCount = 0;
+    var winCount = 0;
 
     app.onactivated = function (args) {
 
@@ -47,6 +50,8 @@
             articlecontent.style.display = "none";
             articlelist.style.display = "";
 
+            document.getElementById("startNewGameButton").addEventListener("click", startNewGame, false);
+
             args.setPromise(WinJS.UI.processAll().then(downloadC9BlogFeed));
         }
     };
@@ -61,119 +66,119 @@
 
     function ButtonRockClickHandler(eventInfo) {
         eventInfo.preventDefault();
-        document.getElementById("myChoiceResult").innerText = "My Choice: Rock";
-        document.getElementById("buttonrock1").className = "red";
-        document.getElementById("buttonpaper1").className = "div1";
-        document.getElementById("buttonscissors1").className = "div1";
-
-        document.getElementById("buttonrock2").className = "div1";
-        document.getElementById("buttonpaper2").className = "div1";
-        document.getElementById("buttonscissors2").className = "div1";
-
-        var win8Game = Math.floor((Math.random() * 3) + 1);
-        switch (win8Game) {
-            case 1:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Rock";
-                document.getElementById("buttonrock2").className = "red";
-                document.getElementById("resultMessage").innerText = "Rock - Rock = tie";
-                break;
-
-            case 2:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Paper";
-                document.getElementById("buttonpaper2").className = "red";
-                document.getElementById("resultMessage").innerText = "Paper covers Rock = windows8 wins";
-                var i = WinJS.Application.sessionState.winCount + 1;
-                WinJS.Application.sessionState.winCount = i;
-                break;
-
-            case 3:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Scissors";
-                document.getElementById("buttonscissors2").className = "red";
-                document.getElementById("resultMessage").innerText = "Rock breaks Scissors = player wins";
-                var i = WinJS.Application.sessionState.myCount + 1;
-                WinJS.Application.sessionState.myCount = i;
-                break;
-        }
-        document.getElementById("myCount").innerText = WinJS.Application.sessionState.myCount;
-        document.getElementById("winCount").innerText = WinJS.Application.sessionState.winCount;
+        playMyGame("Rock");
     }
 
     function ButtonPaperClickHandler(eventInfo) {
         eventInfo.preventDefault();
-        document.getElementById("myChoiceResult").innerText = "My Choice: Paper";
-        document.getElementById("buttonrock1").className = "div1";
-        document.getElementById("buttonpaper1").className = "red";
-        document.getElementById("buttonscissors1").className = "div1";
-
-        document.getElementById("buttonrock2").className = "div1";
-        document.getElementById("buttonpaper2").className = "div1";
-        document.getElementById("buttonscissors2").className = "div1";
-
-        var win8Game = Math.floor((Math.random() * 3) + 1);
-        switch (win8Game) {
-            case 1:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Rock";
-                document.getElementById("buttonrock2").className = "red";
-                document.getElementById("resultMessage").innerText = "Paper covers Rock = player wins";
-                var i = WinJS.Application.sessionState.myCount + 1;
-                WinJS.Application.sessionState.myCount = i;
-                break;
-
-            case 2:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Paper";
-                document.getElementById("buttonpaper2").className = "red";
-                document.getElementById("resultMessage").innerText = "Paper - Paper = tie";
-                break;
-
-            case 3:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Scissors";
-                document.getElementById("buttonscissors2").className = "red";
-                document.getElementById("resultMessage").innerText = "Scissors cut Paper = windows8 wins";
-                var i = WinJS.Application.sessionState.winCount + 1;
-                WinJS.Application.sessionState.winCount = i;
-                break;
-        }
-        document.getElementById("myCount").innerText = WinJS.Application.sessionState.myCount;
-        document.getElementById("winCount").innerText = WinJS.Application.sessionState.winCount;
+        playMyGame("Paper");
     }
 
     function ButtonScissorsClickHandler(eventInfo) {
         eventInfo.preventDefault();
-        document.getElementById("myChoiceResult").innerText = "My Choice: Scissors";
+        playMyGame("Scissors");
+    }
+
+    function playMyGame(myChoice) {
+        document.getElementById("myChoiceResult").innerText = "My Choice: " + myChoice;
+        document.getElementById("buttonrock1").className = myChoice == "Rock" ? "red" : "div1";
+        document.getElementById("buttonpaper1").className = myChoice == "Paper" ? "red" : "div1";
+        document.getElementById("buttonscissors1").className = myChoice == "Scissors" ? "red" : "div1";
+
+        var win8Game = Math.floor((Math.random() * 3) + 1);
+        var winChoice;
+        switch (win8Game) {
+            case 1:
+                winChoice = "Rock";
+                break;
+            case 2:
+                winChoice = "Paper";
+                break;
+            case 3:
+                winChoice = "Scissors";
+                break;
+        }
+
+        document.getElementById("winChoiceResult").innerText = "Win8 Choice: " + winChoice;
+        document.getElementById("buttonrock2").className = winChoice == "Rock" ? "red" : "div1";
+        document.getElementById("buttonpaper2").className = winChoice == "Paper" ? "red" : "div1";
+        document.getElementById("buttonscissors2").className = winChoice == "Scissors" ? "red" : "div1";
+
+        if (myChoice == "Rock" && winChoice == "Scissors") {
+            document.getElementById("resultMessage").innerText = "Rock breaks Scissors = player wins";
+            myCount++;
+        }
+        else if (myChoice == "Scissors" && winChoice == "Rock") {
+            document.getElementById("resultMessage").innerText = "Rock breaks Scissors = windows8 wins";
+            winCount++;
+        }
+        else if (myChoice == "Scissors" && winChoice == "Paper") {
+            document.getElementById("resultMessage").innerText = "Scissors cuts Paper = player wins";
+            myCount++;
+        }
+        else if (myChoice == "Paper" && winChoice == "Scissors") {
+            document.getElementById("resultMessage").innerText = "Scissors cuts Paper = windows8 wins";
+            winCount++;
+        }
+        else if (myChoice == "Rock" && winChoice == "Paper") {
+            document.getElementById("resultMessage").innerText = "Rock wraps Paper = player wins";
+            myCount++;
+        }
+        else if (myChoice == "Paper" && winChoice == "Rock") {
+            document.getElementById("resultMessage").innerText = "Rock wraps Paper = windows8 wins";
+            winCount++;
+        }
+        if (myChoice == "Rock" && winChoice == "Rock") {
+            document.getElementById("resultMessage").innerText = "Rock - Rock = tie";
+        }
+        if (myChoice == "Paper" && winChoice == "Paper") {
+            document.getElementById("resultMessage").innerText = "Paper - Paper = tie";
+        }
+        if (myChoice == "Scissors" && winChoice == "Scissors") {
+            document.getElementById("resultMessage").innerText = "Scissors - Scissors = tie";
+        }
+
+        document.getElementById("myCount").innerText = myCount;
+        document.getElementById("winCount").innerText = winCount;
+
+        if (myCount >= 5) {
+            showGameOverFlyout("Player wins the Game " + myCount + " to " + winCount);
+        }
+        if (winCount >= 5) {
+            showGameOverFlyout("Windows8 wins the Game " + winCount + " to " + myCount);
+        }
+    }
+
+    function showGameOverFlyout(text) {
+        //showFlyout(gameOverFlyout, startNewGameButton, "auto");
+
+        var messagedialogpopup = new Windows.UI.Popups.MessageDialog(text, "Game Over");
+        messagedialogpopup.commands.append(new Windows.UI.Popups.UICommand("new", startNewGame()));
+        messagedialogpopup.showAsync();
+    }
+
+    function startNewGame() {
+        myCount = 0;
+        winCount = 0;
+        document.getElementById("myChoiceResult").innerText = "";
+        document.getElementById("winChoiceResult").innerText = "";
+        document.getElementById("resultMessage").innerText = "";
+
         document.getElementById("buttonrock1").className = "div1";
         document.getElementById("buttonpaper1").className = "div1";
-        document.getElementById("buttonscissors1").className = "red";
-
+        document.getElementById("buttonscissors1").className = "div1";
         document.getElementById("buttonrock2").className = "div1";
         document.getElementById("buttonpaper2").className = "div1";
         document.getElementById("buttonscissors2").className = "div1";
 
-        var win8Game = Math.floor((Math.random() * 3) + 1);
-        switch (win8Game) {
-            case 1:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Rock";
-                document.getElementById("buttonrock2").className = "red";
-                document.getElementById("resultMessage").innerText = "Rock breaks Scissors = windows8 wins";
-                var i = WinJS.Application.sessionState.winCount + 1;
-                WinJS.Application.sessionState.winCount = i;
-                break;
+        document.getElementById("myCount").innerText = "";
+        document.getElementById("winCount").innerText = "";
 
-            case 2:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Paper";
-                document.getElementById("buttonpaper2").className = "red";
-                document.getElementById("resultMessage").innerText = "Scissors cut Paper = player wins";
-                var i = WinJS.Application.sessionState.myCount + 1;
-                WinJS.Application.sessionState.myCount = i;
-                break;
+        //document.getElementById("gameOverFlyout").winControl.hide();
+    }
 
-            case 3:
-                document.getElementById("winChoiceResult").innerText = "Win8 Choice: Scissors";
-                document.getElementById("buttonscissors2").className = "red";
-                document.getElementById("resultMessage").innerText = "Scissors - Scissors = tie";
-                break;
-        }
-        document.getElementById("myCount").innerText = WinJS.Application.sessionState.myCount;
-        document.getElementById("winCount").innerText = WinJS.Application.sessionState.winCount;
+    function showFlyout(flyout, anchor, placement) {
+        flyout.winControl.show(anchor, placement);
     }
 
     function nameButtonClickHandler(eventInfo) {
@@ -233,30 +238,44 @@
         var feed2 = "http://ppt-rockpaperscissors.blogspot.com/feeds/posts/default";
 
         WinJS.xhr({ url: feed2 }).then(function (rss) {
-            //var items = rss.responseXML.querySelectorAll("item");
-
-            //for (var n = 0; n < items.length; n++) {
-            //    var article = {};
-            //    article.title = items[n].querySelector("title").textContent;
-            //    article.content = items[n].querySelector("description").textContent;
-            //    articlesList.push(article);
-            //}
-
             var items = rss.responseXML.querySelectorAll("entry");
             for (var n = 0; n < items.length; n++) {
                 var article = {};
                 article.title = items[n].querySelector("title").textContent + ' - ' + items[n].querySelector("content").textContent;
                 //article.content = items[n].querySelector("description").textContent;
                 article.url = items[n].querySelectorAll("link");
-                
+
                 articlesList.push(article);
             }
-
-            //var jsonData = JSON.parse(rss.responseText);
-            //var list = new WinJS.Binding.List(jsonData.responseData.feed.entries);
-            //dataControl.itemDataSource = list.dataSource
-
         });
+    }
+
+    function downloadOK(rss) {
+        //var items = rss.responseXML.querySelectorAll("item");
+
+        //for (var n = 0; n < items.length; n++) {
+        //    var article = {};
+        //    article.title = items[n].querySelector("title").textContent;
+        //    article.content = items[n].querySelector("description").textContent;
+        //    articlesList.push(article);
+        //}
+
+        var items = rss.responseXML.querySelectorAll("entry");
+        for (var n = 0; n < items.length; n++) {
+            var article = {};
+            article.title = items[n].querySelector("title").textContent + ' - ' + items[n].querySelector("content").textContent;
+            //article.content = items[n].querySelector("description").textContent;
+            article.url = items[n].querySelectorAll("link");
+
+            articlesList.push(article);
+        }
+
+        //var jsonData = JSON.parse(rss.responseText);
+        //var list = new WinJS.Binding.List(jsonData.responseData.feed.entries);
+        //dataControl.itemDataSource = list.dataSource
+    }
+
+    function downloadError() {
     }
 
     app.oncheckpoint = function (args) {
