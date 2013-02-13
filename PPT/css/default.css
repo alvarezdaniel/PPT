@@ -31,7 +31,7 @@
     display: -ms-grid;
     -ms-grid-row: 2;
     -ms-grid-columns: 300px 120px 1fr;
-    -ms-grid-rows: 50px 50px 50px;
+    -ms-grid-rows: 50px 50px 80px 30px 100px;
     margin-left: 20px;
 }
 
@@ -69,6 +69,25 @@
     -ms-grid-column: 1;
     -ms-grid-row-align: center;
 }
+
+#scoresListLabel
+{
+    -ms-grid-row: 4;
+    border: dashed;
+    margin-left: 20px;
+}
+
+#scoresList
+{
+    -ms-grid-row: 5;
+    margin-left: 20px;
+}
+
+    #scoresList .win-item
+    {
+        width: 100%;
+        height: 30px;
+    }
 
 #game
 {
@@ -127,6 +146,7 @@
     -ms-grid-row: 1;
     -ms-grid-row-align: center;
 }
+
 #winChoiceLabel
 {
     -ms-grid-column: 1;
@@ -139,6 +159,7 @@
     -ms-grid-column: 2;
     -ms-grid-row: 1;
 }
+
 #buttonrock2
 {
     -ms-grid-column: 2;
@@ -150,6 +171,7 @@
     -ms-grid-column: 3;
     -ms-grid-row: 1;
 }
+
 #buttonpaper2
 {
     -ms-grid-column: 3;
@@ -161,6 +183,7 @@
     -ms-grid-column: 4;
     -ms-grid-row: 1;
 }
+
 #buttonscissors2
 {
     -ms-grid-column: 4;
@@ -174,6 +197,7 @@
     -ms-grid-row-align: center;
     margin-left: 20px;
 }
+
 #winChoiceResult
 {
     -ms-grid-column: 5;
@@ -188,6 +212,7 @@
     -ms-grid-row: 1;
     -ms-grid-row-align: center;
 }
+
 #winCount
 {
     -ms-grid-column: 6;
@@ -231,9 +256,10 @@
     -ms-grid-row: 3;
 }
 
+
 @media screen and (-ms-view-state: fullscreen-landscape)
 {
-/*
+    /*
     #headerDiv
     {
         -ms-grid-row: 1;

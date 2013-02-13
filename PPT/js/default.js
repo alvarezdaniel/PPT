@@ -7,6 +7,7 @@
     var activation = Windows.ApplicationModel.Activation;
     var startGameButton;
     var articlesList;
+    var scoresList;
 
     //WinJS.Application.sessionState.playCount = 0;
     //WinJS.Application.sessionState.myCount = 0;
@@ -50,7 +51,11 @@
             //backbutton.addEventListener("click", backButtonClick);
 
             articlesList = new WinJS.Binding.List();
-            var publicMembers = { ItemList: articlesList };
+            scoresList = new WinJS.Binding.List();
+            var publicMembers = {
+                ItemList: articlesList,
+                ScoresList: scoresList
+            };
             WinJS.Namespace.define("C9Data", publicMembers);
 
             articlecontent.style.display = "none";
@@ -58,7 +63,7 @@
 
             document.getElementById("startNewGameButton").addEventListener("click", startNewGame, false);
 
-            args.setPromise(WinJS.UI.processAll().then(downloadC9BlogFeed));
+            args.setPromise(WinJS.UI.processAll().then(downloadC9BlogFeed).then(downloadScoresList));
         }
     };
 
@@ -263,6 +268,30 @@
         });
     }
 
+    function downloadScoresList() {
+        var scoresTable = client.getTable("Scores");
+        //scoresTable.read().done(function (results) {
+        //    for (var i = 0; i <= results.length - 1; i++) {
+
+        //        var s = {};
+        //        s.info = results[i].playerName + " " + results[i].score;
+
+        //        scoresList.push(s);
+        //    }
+        //});
+
+        scoresTable.where({ })
+            .take(5)
+            .read()
+            .done(function (results) {
+                for (var i = 0; i <= results.length - 1; i++) {
+                    var s = {};
+                    s.info = results[i].playerName + " " + results[i].score;
+                    scoresList.push(s);
+                }
+            });
+    }
+
     function downloadOK(rss) {
         //var items = rss.responseXML.querySelectorAll("item");
 
@@ -308,4 +337,3 @@
 
     app.start();
 })();
-    

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="59191dalvarez.PPT" Version="1.0.0.4" Publisher="CN=979E6971-D3F7-4052-B648-4999CC84F767" />
+  <Identity Name="59191dalvarez.PPT" Version="1.0.0.5" Publisher="CN=979E6971-D3F7-4052-B648-4999CC84F767" />
   <Properties>
     <DisplayName>PPT</DisplayName>
     <PublisherDisplayName>dalvarez</PublisherDisplayName>
