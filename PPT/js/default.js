@@ -14,6 +14,12 @@
     var playCount = 0;
     var myCount = 0;
     var winCount = 0;
+    var playerName = "";
+
+    var client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(
+        "https://ppt.azure-mobile.net/",
+        "wzhdZgoHeMrXrVWTakUBKpgJaZgSue26"
+    );
 
     app.onactivated = function (args) {
 
@@ -105,7 +111,7 @@
         document.getElementById("buttonscissors2").className = winChoice == "Scissors" ? "red" : "div1";
 
         if (myChoice == "Rock" && winChoice == "Scissors") {
-            document.getElementById("resultMessage").innerText = "Rock breaks Scissors = player wins";
+            document.getElementById("resultMessage").innerText = "Rock breaks Scissors = " + playerName + " wins";
             myCount++;
         }
         else if (myChoice == "Scissors" && winChoice == "Rock") {
@@ -113,7 +119,7 @@
             winCount++;
         }
         else if (myChoice == "Scissors" && winChoice == "Paper") {
-            document.getElementById("resultMessage").innerText = "Scissors cuts Paper = player wins";
+            document.getElementById("resultMessage").innerText = "Scissors cuts Paper = " + playerName + " wins";
             myCount++;
         }
         else if (myChoice == "Paper" && winChoice == "Scissors") {
@@ -121,7 +127,7 @@
             winCount++;
         }
         else if (myChoice == "Rock" && winChoice == "Paper") {
-            document.getElementById("resultMessage").innerText = "Rock wraps Paper = player wins";
+            document.getElementById("resultMessage").innerText = "Rock wraps Paper = " + playerName + " wins";
             myCount++;
         }
         else if (myChoice == "Paper" && winChoice == "Rock") {
@@ -142,7 +148,14 @@
         document.getElementById("winCount").innerText = winCount;
 
         if (myCount >= 5) {
-            showGameOverFlyout("Player wins the Game " + myCount + " to " + winCount);
+            var score = {
+                playerName: playerName,
+                score: myCount + "-" + winCount,
+                date: new Date()
+            };
+            client.getTable("Scores").insert(score);
+
+            showGameOverFlyout(playerName + " wins the Game " + myCount + " to " + winCount);
         }
         if (winCount >= 5) {
             showGameOverFlyout("Windows8 wins the Game " + winCount + " to " + myCount);
@@ -199,11 +212,11 @@
         var nameInput = document.getElementById("nameInput");
 
         if (nameInput.value != "") {
-            WinJS.Application.sessionState.player = nameInput.value;
+            playerName = nameInput.value;
             eventInfo.preventDefault();
 
             document.getElementById("playersLabel").innerText =
-                WinJS.Application.sessionState.player + " vs Windows8: play your turn using the buttons from the first row";
+                playerName + " vs Windows8: play your turn using the buttons from the first row";
 
             document.getElementById("selectPlayer").style.display = "none";
             document.getElementById("game").style.display = "";
